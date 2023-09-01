@@ -10,15 +10,16 @@ const port = process.env.PORT || 3000;
 
 
 // This is a Express middleware function to stop some where, process some work and after that it'll get executed
-app.use((req, res, next) => {
-    const methods = ['GET', 'POST', 'PATCH', 'DELETE']
-    if( methods.includes(req.method)){
-        res.status(503).send('The Server is under Maintanance. Please visit after some time!')
-    }
-    else {
-        next()
-    }
-})
+// app.use((req, res, next) => {
+//     // const methods = ['GET', 'POST', 'PATCH', 'DELETE']
+//     const methods = ['DELETE']
+//     if( methods.includes(req.method)){
+//         res.status(503).send('The Server is under Maintanance. Please visit after some time!')
+//     }
+//     else {
+//         next()
+//     }
+// })
 
 
 app.use(express.json());

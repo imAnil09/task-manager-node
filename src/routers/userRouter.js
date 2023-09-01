@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const { update } = require('../models/taskCreation');
+const auth = require('../middleware/auth');
 const router = new express.Router();
 
 
@@ -36,12 +37,8 @@ router.post('/users/login', async function (req, res) {
     }
 })
 
-router.get('/users', (req, res) => {
-    User.find().then(user => {
-        res.status(200).send(user);
-    }).catch(err => {
-        res.status(400).send(err);
-    })
+router.get('/users/me', auth, (req, res) => {
+     res.send(req.user);
 })
 
 router.get('/users/:id', (req, res) => {
